@@ -1,0 +1,17 @@
+::-webkit-scrollbar {
+    width: 20px; /* <-- This sets the thickness of the VERTICAL scrollbar */
+    height: 20px; /* <-- This sets the thickness of the HORIZONTAL scrollbar */
+  }
+  :host ::ng-deep .mat-menu-panel {
+    min-width: 112px;
+    max-width: 400px;
+    overflow: auto;
+ }
+ .responsive-margin {
+  margin-top: 0; /* Default for all devices */
+
+  /* Apply marginTop 50px for xl and lg devices */
+  @media (min-width: 992px) {
+    margin-top: 50px;
+  }
+}

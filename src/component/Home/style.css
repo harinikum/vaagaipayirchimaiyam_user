@@ -1,0 +1,31 @@
+
+  .contentContainer{
+    text-align: center;
+    padding-bottom:20px;
+    color:#5e3023;
+    margin-bottom:10px;
+    padding-top:10px;
+    font-family:"Montserrat";
+    font-size:30px;
+  }
+  .btn{
+    width:200px;
+    height:50px;
+    margin-right:10px;
+  }
+  @media (max-width:600px){
+    
+      .contentContainer{
+        text-align:center;
+        color:#5e3023;
+        margin-bottom:10px;
+        padding-top:20px;
+        font-family:"Montserrat";
+        font-size: 20px;
+      }
+      .btn{
+        width:120px;
+        height:40px;
+        margin-right:10px;
+      }
+  }

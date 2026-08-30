@@ -1,0 +1,485 @@
+import React, { useState, useEffect, useContext } from "react";
+import { axiosInstance } from "../component/Api/instance";
+import { Container, Row, Col } from "react-bootstrap";
+import "../YearTestPaper/style.css";
+import {
+  Button,
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogActions,
+  IconButton,
+  Box,
+  Typography
+} from "@material-ui/core";
+import CloseIcon from "@mui/icons-material/Close";
+import { Style } from "../YearTestPaper/style";
+import Arrow from "../asserts/system-regular-161-trending-flat-white.gif";
+import Crown from "../asserts/crown.png";
+import { useParams, useNavigate } from "react-router-dom";
+import { UserContext } from "../Context";
+
+export default function SubInstruction() {
+  const navigate = useNavigate();
+  const [options, setOptions] = useState([]);
+  const [data, setData] = useState([]);
+  const [paperid, setPaperid] = useState(null);
+  const { sno } = useParams();
+  const [selectedIndex, setSelectedIndex] = useState(null);
+  const [category, setCategory] = useState([]);
+  const plan = localStorage.getItem("category");
+  const email = localStorage.getItem("userMail");
+  const [count, setCount] = useState('');
+  const { Endpoint } = useContext(UserContext);
+  // const [selectedIndex, setSelectedIndex] = useState(null);
+  const [open, setOpen] = useState(false);
+  const [isTestStarted, setIsTestStarted] = useState(false);
+
+  // const handlePaperClick = async (index, category) => {
+  //   await PaperData(index, category); // keep your count & paper logic
+  //   setSelectedIndex(index);
+
+  // };
+
+
+  useEffect(() => {
+    Institution();
+    fetchData();
+  }, []);
+
+  const fetchData = async () => {
+    try {
+      const response = await axiosInstance.post(`get/U_ViewProfile.php`, {
+        email: email,
+      });
+      if (response.status === 200) {
+        if (response.data.message === "timeout") {
+          navigate('/signin');
+        }
+        setCategory(response.data);
+      }
+
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
+
+
+
+  const Institution = async () => {
+    try {
+      const response = await axiosInstance.post(
+        `get/U_ViewSubWiseSubject.php`,
+        { userId: email }
+      );
+      if (response.status === 200) {
+        if (response.data.message === "timeout") {
+          navigate('/signin');
+        }
+        const yearobj = response.data
+          ?.map((item) => ({
+            ...item,
+            img: `https://vaagaimaiyam.vebbox.in/vaagaibackend/controllers/api/admin/upload/${item.img}`,
+          }))
+          .filter((item) => item.sno == sno);
+        setData(yearobj);
+      }
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
+
+  useEffect(() => {
+    const fetchPaperData = async () => {
+      try {
+        const response = await axiosInstance.post(
+          `get/U_ViewSubWisePaper.php`,
+          { userId: email, id: sno }
+        );
+        if (response.status === 200) {
+          if (response.data.message === "timeout") {
+            navigate('/signin');
+          }
+          const paperobj = response?.data?.filter(
+            (datas) => datas.subject_id == sno
+          );
+          setOptions(paperobj);
+        }
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+    fetchPaperData();
+  }, []);
+
+  // const PaperData = async (index, paperCategory) => {
+  //   const selectedPaper = options[index];
+  //   try {
+  //     const response = await axiosInstance.post(`get/U_viewtestcount.php`, {
+  //       id: email,
+  //       institution_id: sno,
+  //       paper_id: selectedPaper.sno,
+  //     });
+
+  //     console.log("Response data:", response.data);
+
+  //     const fetchedCount = response.data[0]; // Directly use the fetched data
+  //     console.log(fetchedCount.count);
+
+
+  //     // Use the fetched data directly instead of relying on the state
+  //     if (category.length > 0 && options.length > 0) {
+  //       if (fetchedCount.count < 3) {
+  //         try {
+  //           console.log(plan);
+  //           const initResponse = await axiosInstance.post(`post/U_SubjectTest.php`, {
+  //             id: email,
+  //             subject_id: sno,
+  //             paper_id: selectedPaper.sno,
+  //           });
+
+  //           if (initResponse.status === 200) {
+  //             if (initResponse.data.message === "timeout") {
+  //               navigate('/signin');
+  //             }
+  //             setSelectedIndex(index);
+  //             setPaperid(selectedPaper.sno);
+  //             setOpen(true);
+  //           }
+  //         } catch (error) {
+  //           console.error("Error initializing paper:", error);
+  //         }
+  //       } else {
+  //         alert("இந்த தேர்வு கேள்வித் தாளை நீங்கள் மூன்று முறை பயன்படுத்தியுள்ளீர்கள். இனிமேல் பயன்படுத்த வேண்டுமெனில் நிர்வாகியிடம் அனுமதி கேட்டுப் பெறுங்கள்.");
+  //       }
+  //     }
+  //   } catch (error) {
+  //     console.error("Error fetching data:", error);
+  //   }
+  // };
+
+  // const PaperData = async (index, paperCategory) => {
+  //   const selectedPaper = options[index];
+  //   try {
+  //     const response = await axiosInstance.post(`get/U_viewtestcount.php`, {
+  //       id: email,
+  //       institution_id: sno,
+  //       paper_id: selectedPaper.sno,
+  //     });
+
+  //     const fetchedCount = response.data[0];
+  //     console.log("Attempt count:", fetchedCount.count);
+
+  //     // Check if user already attempted the test at least once
+  //     if (category.length > 0 && options.length > 0) {
+  //       if (fetchedCount.count === 0) {
+  //         // First time attempt is allowed
+  //         setSelectedIndex(index);
+  //         setPaperid(selectedPaper.sno);
+
+  //         // Optional: Uncomment and use if you need to initialize the test
+  //         /*
+  //       try {
+  //         const initResponse = await axiosInstance.post(
+  //           `post/U_SubjectTest.php`,
+  //           {
+  //             id: email,
+  //             subject_id: sno,
+  //             paper_id: selectedPaper.sno,
+  //           }
+  //         );
+
+  //         if (initResponse.status === 200) {
+  //           if (initResponse.data.message === "timeout") {
+  //             navigate("/signin");
+  //           }
+  //         }
+  //       } catch (error) {
+  //         console.error("Error initializing paper:", error);
+  //       }
+  //       */
+  //       } else {
+  //         alert(
+  //           "இந்த தேர்வு கேள்வித் தாளை நீங்கள் ஒரு முறை பயன்படுத்தியுள்ளீர்கள். இனிமேல் பயன்படுத்த வேண்டுமெனில் நிர்வாகியிடம் அனுமதி கேட்டுப் பெறுங்கள்."
+  //         );
+  //       }
+  //     }
+  //   } catch (error) {
+  //     console.error("Error fetching data:", error);
+  //   }
+  // };
+
+  const PaperData = async (index, paperCategory) => {
+    const selectedPaper = options[index];
+    try {
+      const response = await axiosInstance.post(`get/U_viewtestcount.php`, {
+        id: email,
+        institution_id: sno,
+        paper_id: selectedPaper.sno,
+      });
+
+      console.log("Response data:", response.data);
+
+      const fetchedCount = response.data[0]; // Directly use the fetched data
+      console.log(fetchedCount.count);
+
+      // Use the fetched data directly instead of relying on the state
+      if (category.length > 0 && options.length > 0) {
+        if (fetchedCount.count === 0) {
+          try {
+            console.log(plan);
+            const initResponse = await axiosInstance.post(
+              `post/U_SubjectTest.php`,
+              {
+                id: email,
+                subject_id: sno,
+                paper_id: selectedPaper.sno,
+              }
+            );
+
+            if (initResponse.status === 200) {
+              if (initResponse.data.message === "timeout") {
+                navigate("/signin");
+              }
+              setSelectedIndex(index);
+              setPaperid(selectedPaper.sno);
+            }
+          } catch (error) {
+            console.error("Error initializing paper:", error);
+          }
+        } else {
+          alert(
+            "இந்த தேர்வு கேள்வித் தாளை நீங்கள் ஒரு முறை பயன்படுத்தியுள்ளீர்கள். இனிமேல் பயன்படுத்த வேண்டுமெனில் நிர்வாகியிடம் அனுமதி கேட்டுப் பெறுங்கள்."
+          );
+        }
+      }
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
+
+
+  // const handleStartTest = async () => {
+  //   const selectedPaper = options[selectedIndex];
+  //   try {
+  //     const response = await axiosInstance.post(`post/U_ModelMockTest.php`, {
+  //       id: email,
+  //       institution_id: sno,
+  //       mcq_id: selectedPaper.sno,
+  //     });
+
+  //     if (response.status === 200) {
+  //       if (response.data.message === "timeout") {
+  //         navigate("/signin");
+  //       } else {
+  //         setOpen(false); // Close dialog
+  //         startTest(); // Go to test route
+  //       }
+  //     }
+  //   } catch (error) {
+  //     console.error("Error starting test:", error);
+  //   }
+  // };
+
+  const startTest = () => {
+    if (paperid) {
+      const selectedPaper = options[selectedIndex];
+      navigate(`/subtest/${sno}/${paperid}`, {
+        state: {
+          paperName: selectedPaper.paper_name,
+        },
+      });
+    }
+  };
+
+  const MainContainer = {
+    backgroundColor: "#f3e9dc",
+    height: "200px",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "space-between",
+    boxShadow: "rgba(99, 99, 99, 0.2) 0px 2px 8px 0px",
+  };
+
+  const Btn = {
+    backgroundColor: "#5e3023",
+    border: "none",
+    borderRadius: "5px",
+    fontWeight: 600,
+    marginBottom: "10px",
+    height: "40px",
+    display: "flex",
+    justifyContent: "center",
+  };
+
+  return (
+    <Style>
+      {data.length > 0 &&
+        data.map((d) => (
+          <div
+            key={d.sno}
+            style={{ backgroundColor: "#f3e9dc", height: "100vh" }}
+          >
+            <Container fluid style={MainContainer}>
+              <Row>
+                <Col>
+                  <div
+                    style={{
+                      display: "flex",
+                      flexDirection: "row",
+                      justifyContent: "space-between",
+                      width: "95vw",
+                      padding: "20px",
+                    }}
+                  >
+                    <div style={{ width: "700px" }}>
+                      <Typography style={{ fontWeight: 600 }}>
+                        {d.subject_name}
+                      </Typography>
+                      <Typography>{d.subject_desc}</Typography>
+                    </div>
+                    <div
+                      style={{ display: "flex", justifyContent: "flex-end" }}
+                    >
+                      <img src={d.img} height="65px" alt="Institution Logo" />
+                    </div>
+                  </div>
+                </Col>
+              </Row>
+            </Container>
+            <Container fluid style={{ padding: "20px" }}>
+              <Row>
+                <Col xs={12} sm={12} md={12} lg={3} xl={3}>
+                  <div
+                    style={{ backgroundColor: "white", borderRadius: "10px" }}
+                  >
+                    <Button fullWidth style={Btn}>
+                      Model MCQ
+                    </Button>
+                    {options.map((option, index) => (
+                      <Button
+                        key={index}
+                        className="Option"
+                        fullWidth
+                        onClick={() => PaperData(index, option.category)}
+                        // onClick={() => PaperData(index, option.category)}
+                        style={{
+                          backgroundColor:
+                            selectedIndex === index ? "#5e3023" : "#fff",
+                          color: selectedIndex === index ? "#fff" : "#000",
+                        }}
+                      >
+                        {option.paper_name}&nbsp;&nbsp;
+                        {option.category === "premium" && (
+                          <img src={Crown} height="20px" alt="Crown Icon" />
+                        )}
+                      </Button>
+                    ))}
+                  </div>
+                </Col>
+                <Col xs={12} sm={12} md={12} lg={9} xl={9}>
+                  <div
+                    style={{
+                      backgroundColor: "white",
+                      borderRadius: "10px",
+                      padding: "40px",
+                    }}
+                  >
+                    <Typography style={{ fontWeight: 600 }}>
+                      INSTRUCTION
+                    </Typography>
+                    {d.subject_instruction && (
+                      <ul>
+                        {d.subject_instruction
+                          .split(/\r\n/)
+                          .filter((instruction) => instruction.trim() !== "") // filter out empty instructions
+                          .map((instruction, index) => (
+                            <li key={index} style={{ listStyleType: "none" }}>
+                              {instruction.trim()}
+                            </li>
+                          ))}
+                      </ul>
+                    )}
+
+                    <div
+                      style={{ display: "flex", justifyContent: "flex-end" }}
+                    >
+                      {selectedIndex !== null && (
+                        <Button
+                          onClick={startTest} // Only navigate on button click
+                          // onClick={() => setOpen(true)}
+                          style={{
+                            backgroundColor: "#5e3023",
+                            color: "white",
+                            width: "100px",
+                          }}
+                          disabled={!paperid}
+                        >
+                          Start &nbsp;
+                          <img src={Arrow} alt="Arrow Icon" height="20px" />
+                        </Button>
+                      )}
+                    </div>
+                  </div>
+                </Col>
+              </Row>
+              <Dialog open={open} onClose={() => setOpen(false)}>
+                <DialogTitle
+                  sx={{
+                    m: 0,
+                    p: 2,
+                    display: "flex",
+                    justifyContent: "space-between",
+                    alignItems: "center",
+                  }}
+                >
+                  <span>
+                    Test:{" "}
+                    {selectedIndex !== null &&
+                      options[selectedIndex].paper_name}
+                  </span>
+                </DialogTitle>
+
+                <DialogContent dividers>
+                  <Typography>
+                    ⚠️ தேர்வுக்கு வரவேற்கிறோம். தேர்வை துவக்கியவுடன், அதை
+                    முடிக்க வேண்டும். நடுவில் விட்டு வெளியேறினால், உங்கள்
+                    மதிப்பெண் 0 ஆக பதிவு செய்யப்படும்.{" "}
+                    <span style={{ color: "red" }}>
+                      இந்த தேர்வை நீங்கள் ஒரே முறை மட்டுமே எழுத முடியும்.
+                    </span>
+                  </Typography>
+                </DialogContent>
+
+                <DialogActions>
+                  <Box
+                    sx={{
+                      display: "flex",
+                      justifyContent: "space-between",
+                      width: "100%",
+                    }}
+                  >
+                    <Button
+                      onClick={() => setOpen(false)} // Close dialog
+                      color="secondary"
+                      variant="outlined"
+                    >
+                      Close
+                    </Button>
+
+                    <Button
+                      variant="contained"
+                      onClick={startTest}
+                      color="primary"
+                    >
+                      OK
+                    </Button>
+                  </Box>
+                </DialogActions>
+              </Dialog>
+            </Container>
+          </div>
+        ))}
+    </Style>
+  );
+}

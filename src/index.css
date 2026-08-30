@@ -1,0 +1,17 @@
+/* *{
+  margin: 0px;
+  padding: 0px;
+} */
+body {
+  margin: 0;
+  font-family: 'Source';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #f3e9dc;
+  overflow-x: hidden;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}

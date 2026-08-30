@@ -1,0 +1,47 @@
+/* Container for the carousel */
+.carousal-container {
+    width: 100%;
+    margin: 0 auto;
+    overflow: hidden;
+  }
+  
+  /* Image styling to prevent stretching */
+  .carousal-image {
+    width: 100%;
+    height: auto; /* Ensure the image maintains its aspect ratio */
+    object-fit: cover; /* Ensures images are cropped and fitted within the container */
+    border-radius: 8px; /* Optional: Rounded corners for the images */
+  }
+  
+  /* Styling for the slick carousel dots */
+  .slick-dots li button:before {
+    color: #000; /* Dot color */
+  }
+  
+  .slick-dots li.slick-active button:before {
+    color: #007bff; /* Active dot color */
+  }
+  
+  /* Styling for the navigation arrows */
+  .slick-prev, .slick-next {
+    color: #fff;
+    z-index: 1000;
+  }
+  
+  .slick-prev:hover, .slick-next:hover {
+    color: #007bff; /* Change arrow color on hover */
+  }
+  
+  /* Responsiveness */
+  @media (max-width: 768px) {
+    .carousal-image {
+      height: 250px; /* Adjust height for smaller screens */
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .carousal-image {
+      height: 200px; /* Further adjust height for very small screens */
+    }
+  }
+  

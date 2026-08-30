@@ -1,0 +1,28 @@
+.box {
+    text-align: center;
+    margin-bottom: 10px;
+    padding: 20px;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    border-radius: 10px;
+    transition: transform 0.3s ease;
+  }
+.box:hover{
+  transform: scale(1.09);
+}  
+  .profile-image {
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+  }
+  
+  .profile-name {
+    /* margin-top: 20px; */
+    font-size: 30px;
+    color: #5e3023;
+  }
+  
+  
+  .tittle{
+    color: #5e3023;
+    font-weight: bold;
+  }

@@ -1,0 +1,25 @@
+@font-face {
+    font-family: 'Source';
+    src: url('../src/asserts/font/SourceSans3-VariableFont_wght.ttf') format('truetype');
+    /* font-weight: 500; */
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Montserrat';
+    src: url('../src/asserts/font/Montserrat-Bold.ttf') format('truetype');
+    /* font-weight: 500; */
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Question';
+    src: url('../src/asserts/font/Rubik-Medium.ttf') format('truetype');
+    /* font-weight: 500; */
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Answer';
+    src: url('../src/asserts/font/Rubik-Regular.ttf') format('truetype');
+    /* font-weight: 500; */
+    font-style: normal;
+}
+ 

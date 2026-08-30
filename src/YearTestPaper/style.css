@@ -1,0 +1,24 @@
+.Option{
+    /* width:300px; */
+    background-color:white;
+    color:black;
+    border:none;
+    text-align: left;
+    padding-left:20px;
+    display:flex;
+    justify-content: center;
+}
+.Option:hover{
+    background-color:#f3e9dc;
+    color:black;   
+}
+.bbt{
+    background-color: #5e3023;
+    border: none;
+    width:100px;
+}
+.bbt:hover{
+    background-color: #5e3023;
+    border: none;
+    width:100px;
+}

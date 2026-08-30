@@ -1,0 +1,10 @@
+.nav{
+    text-decoration: none;
+    color: gray;
+}
+.nav:active{
+    color: #5e3023;
+}
+.nav:hover{
+    color: #5e3023;
+}   

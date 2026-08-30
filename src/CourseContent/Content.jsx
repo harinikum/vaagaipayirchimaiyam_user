@@ -79,7 +79,7 @@ export default function Content() {
                         </Typography>
                       </div>
                       <div style={{ display: "flex", justifyContent: "flex-end" }}>
-                        <img src={`https://vaagaimaiyam.vebbox.in/vaagaibackend/controllers/api/admin/upload/${val.img}`} height="100px" />
+                        <img src={`http://localhost/vaagaibackend_local/vaagaibackend_local/controllers/api/admin/upload/${val.img}`} height="100px" />
                       </div>
                     </div>
                   </Col>

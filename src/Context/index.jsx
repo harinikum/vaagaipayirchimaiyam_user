@@ -10,7 +10,7 @@ function UserContextProvider({ children }) {
   const [timeLeft, setTimeLeft] = useState(null);
   const [time, setTime] = useState(null);
   // const [Endpoint, setEndpoint] = useState("http://localhost/vaagaibackend_local/vaagaibackend_local/controllers/api/");
-  const [Endpoint, setEndpoint] = useState("https://vaagaimaiyam.vebbox.in/vaagaibackend/controllers/api/User/");
+  const [Endpoint, setEndpoint] = useState("http://localhost/vaagaibackend_local/vaagaibackend_local/controllers/api/User/");
   // const [ImgEndpoint,setImgEndpoint]=useState("http://localhsot/Nursing_Check/controllers/api/admin/upload/");
   const [token, setToken] = useState(null);
   return (

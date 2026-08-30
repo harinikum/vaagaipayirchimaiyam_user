@@ -19,8 +19,8 @@ import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
 import Web from "../../asserts/_x36__stroke.png";
 
 const DEFAULT_BASE_URL =
-  "https://vaagaimaiyam.vebbox.in/vaagaibackend/controllers/api/admin/upload/";
-  // "http://localhost/vaagaibackend_local/vaagaibackend_local/controllers/api/admin/upload"
+  "http://localhost/vaagaibackend_local/vaagaibackend_local/controllers/api/admin/upload/";
+// "http://localhost/vaagaibackend_local/vaagaibackend_local/controllers/api/admin/upload"
 
 export const isImageCheck = (url) => {
   if (!url) return false;
@@ -207,34 +207,34 @@ export default function ReviewModal({
   const correctCount = hasResponseCount
     ? Number(responsecount[0].correct_count ?? 0)
     : responseData && responseData.length > 0
-    ? calculatedCorrect
-    : 0;
+      ? calculatedCorrect
+      : 0;
 
   const incorrectCount = hasResponseCount
     ? Number(responsecount[0].incorrect_count ?? 0)
     : responseData && responseData.length > 0
-    ? calculatedIncorrect
-    : 0;
+      ? calculatedIncorrect
+      : 0;
 
   const skipCount = hasResponseCount
     ? Number(responsecount[0].skip_count ?? 0)
     : responseData && responseData.length > 0
-    ? calculatedSkip
-    : 0;
+      ? calculatedSkip
+      : 0;
 
   const totalMarks =
     hasResponseCount &&
-    (responsecount[0].total_question_count !== undefined ||
-      (responsecount[0].total_marks !== undefined &&
-        Number(responsecount[0].total_marks) > 1))
+      (responsecount[0].total_question_count !== undefined ||
+        (responsecount[0].total_marks !== undefined &&
+          Number(responsecount[0].total_marks) > 1))
       ? Number(
-          responsecount[0].total_question_count ||
-            responsecount[0].total_marks ||
-            correctCount + incorrectCount + skipCount
-        )
+        responsecount[0].total_question_count ||
+        responsecount[0].total_marks ||
+        correctCount + incorrectCount + skipCount
+      )
       : responseData && responseData.length > 0
-      ? responseData.length
-      : correctCount + incorrectCount + skipCount;
+        ? responseData.length
+        : correctCount + incorrectCount + skipCount;
 
   const accuracy = totalMarks > 0 ? Math.round((correctCount / totalMarks) * 100) : 0;
 
@@ -662,8 +662,8 @@ export default function ReviewModal({
                       borderLeft: isCorrect
                         ? "6px solid #2e7d32"
                         : isIncorrect
-                        ? "6px solid #d32f2f"
-                        : "6px solid #f57c00",
+                          ? "6px solid #d32f2f"
+                          : "6px solid #f57c00",
                       mb: 2.5,
                       p: { xs: 2.5, md: 3 },
                       backgroundColor: "#ffffff",
@@ -740,7 +740,7 @@ export default function ReviewModal({
                     {/* Question Text / Image */}
                     <Box sx={{ mb: 2.5 }}>
                       {question.questions &&
-                      question.questions.trim().startsWith("../upload/") ? (
+                        question.questions.trim().startsWith("../upload/") ? (
                         <Box sx={{ my: 1 }}>
                           <img
                             src={`${BASE_URL}${question.questions

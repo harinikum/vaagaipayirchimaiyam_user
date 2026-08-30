@@ -99,7 +99,7 @@ export default function Courses() {
                 >
                   <div style={MainDiv}>
                     <div>
-                      <img src={`https://vaagaimaiyam.vebbox.in/vaagaibackend/controllers/api/admin/upload/${val.img}`} height="100px" alt="Book" />
+                      <img src={`http://localhost/vaagaibackend_local/vaagaibackend_local/controllers/api/admin/upload/${val.img}`} height="100px" alt="Book" />
                     </div>
                     <div style={{ paddingTop: "20px" }}>{val.course_name}</div>
                   </div>

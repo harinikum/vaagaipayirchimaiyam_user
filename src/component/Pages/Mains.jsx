@@ -29,7 +29,7 @@ export default function Mains() {
           Navigate("/signin");
         } else {
           const subobj = response.data.map((datas) => ({
-            img: `https://vaagaimaiyam.vebbox.in/vaagaibackend/controllers/api/admin/upload/${datas.img}`,
+            img: `http://localhost/vaagaibackend_local/vaagaibackend_local/controllers/api/admin/upload/${datas.img}`,
             name: datas.mains_name,
             path: `/mainsinstruction/${datas.sno}`,
             sno: datas.sno,

@@ -434,7 +434,7 @@ function MicroTest() {
                 <div style={noCopyStyle}>
                   <p style={{ fontWeight: 600, letterSpacing: "1px" }} >{`${selectedQuestionIndex + 1}. ${questions[0].questions}`}</p>
                   {
-                    questions[0].image ? <img src={`https://vaagaimaiyam.vebbox.in/vaagaibackend/controllers/api/admin/upload/${questions[0].image}`} height="200px" alt="Uploaded Image"
+                    questions[0].image ? <img src={`http://localhost/vaagaibackend_local/vaagaibackend_local/controllers/api/admin/upload/${questions[0].image}`} height="200px" alt="Uploaded Image"
                       onClick={handleClick}
                       style={colorSwap ? Active : DisActive} /> : null
                   }
@@ -452,7 +452,7 @@ function MicroTest() {
                           />
                           {isImage(questions[0][`option${option}`]) ? (
                             <img
-                              src={`https://vaagaimaiyam.vebbox.in/vaagaibackend/controllers/api/admin/upload/${questions[0][`option${option}`]}`}
+                              src={`http://localhost/vaagaibackend_local/vaagaibackend_local/controllers/api/admin/upload/${questions[0][`option${option}`]}`}
                               alt={`Option ${option}`}
                               style={{ maxHeight: "80px", marginLeft: "10px" }}
                             />
@@ -471,7 +471,7 @@ function MicroTest() {
                     <div style={{ backgroundColor: "white", margin: "20px", padding: "30px" }}>
                       <Typography style={{ fontWeight: 600 }}>Correct Answer :</Typography>
                       {isImage(questions[0].answer) ? (
-                        <img src={`https://vaagaimaiyam.vebbox.in/vaagaibackend/controllers/api/admin/upload/${questions[0].answer}`} alt="Answer Image" style={{ maxWidth: "80px", paddingTop: "10px" }} />
+                        <img src={`http://localhost/vaagaibackend_local/vaagaibackend_local/controllers/api/admin/upload/${questions[0].answer}`} alt="Answer Image" style={{ maxWidth: "80px", paddingTop: "10px" }} />
                       ) : (
                         <Typography style={{ fontSize: "15px", paddingTop: "10px" }}>{questions[0].answer}</Typography>
                       )}

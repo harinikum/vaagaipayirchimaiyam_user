@@ -176,7 +176,7 @@ function YearTest() {
         if (typeof parsed === "string") {
           try {
             parsed = JSON.parse(parsed);
-          } catch (e) {}
+          } catch (e) { }
         }
         if (parsed && Array.isArray(parsed.data)) {
           parsed = parsed.data;
@@ -407,117 +407,118 @@ function YearTest() {
             parsedData.questions.length > 0
           ) {
             list = parsedData.questions;
-                   if (list.length > 0 && (list[0].questions || list[0].question_id || list[0].correct_answer || list[0].answer)) {
-            const getQId = (item) => {
-              if (item === undefined || item === null) return "";
-              if (typeof item === "object") {
-                return String(item.sno ?? item.question_id ?? item.id ?? item.questionId ?? item.q_id ?? "").trim();
-              }
-              return String(item).trim();
-            };
-
-            const orderMap = new Map();
-            if (Array.isArray(questionsNo) && questionsNo.length > 0) {
-              questionsNo.forEach((item, index) => {
-                const qId = getQId(item);
-                if (qId && !orderMap.has(qId)) {
-                  orderMap.set(qId, index);
+            if (list.length > 0 && (list[0].questions || list[0].question_id || list[0].correct_answer || list[0].answer)) {
+              const getQId = (item) => {
+                if (item === undefined || item === null) return "";
+                if (typeof item === "object") {
+                  return String(item.sno ?? item.question_id ?? item.id ?? item.questionId ?? item.q_id ?? "").trim();
                 }
-              });
-            }
+                return String(item).trim();
+              };
 
-            const formatted = list.map((q, idx) => {
-              const qId = getQId(q);
-              const orderIdx = orderMap.has(qId) ? orderMap.get(qId) : idx;
-              const rawAns =
-                q.student_answer ||
-                q.user_answer ||
-                q.u_ans ||
-                q.selected_option;
-              const isSkippedRaw =
-                !rawAns ||
-                String(rawAns).trim() === "" ||
-                String(rawAns).trim() === "0" ||
-                String(rawAns).trim().toLowerCase() === "null" ||
-                String(rawAns).trim().toLowerCase() === "n/a";
-              const studentAns =
-                isSkippedRaw && selectedOptions && selectedOptions[orderIdx]
-                  ? selectedOptions[orderIdx]
-                  : rawAns || "";
-              let correctAns =
-                q.correct_answer ||
-                q.answer ||
-                q.c_ans ||
-                q.correct ||
-                q.answers ||
-                q.ans ||
-                q.right_answer ||
-                q.crt_ans ||
-                "";
+              const orderMap = new Map();
+              if (Array.isArray(questionsNo) && questionsNo.length > 0) {
+                questionsNo.forEach((item, index) => {
+                  const qId = getQId(item);
+                  if (qId && !orderMap.has(qId)) {
+                    orderMap.set(qId, index);
+                  }
+                });
+              }
 
-              if (!correctAns) {
-                for (const [k, v] of Object.entries(q)) {
-                  const lk = k.toLowerCase();
-                  if (
-                    (lk.includes("ans") || lk.includes("correct") || lk.includes("right")) &&
-                    lk !== "student_answer" &&
-                    lk !== "user_answer" &&
-                    v &&
-                    String(v).trim() !== ""
-                  ) {
-                    correctAns = String(v).trim();
-                    break;
+              const formatted = list.map((q, idx) => {
+                const qId = getQId(q);
+                const orderIdx = orderMap.has(qId) ? orderMap.get(qId) : idx;
+                const rawAns =
+                  q.student_answer ||
+                  q.user_answer ||
+                  q.u_ans ||
+                  q.selected_option;
+                const isSkippedRaw =
+                  !rawAns ||
+                  String(rawAns).trim() === "" ||
+                  String(rawAns).trim() === "0" ||
+                  String(rawAns).trim().toLowerCase() === "null" ||
+                  String(rawAns).trim().toLowerCase() === "n/a";
+                const studentAns =
+                  isSkippedRaw && selectedOptions && selectedOptions[orderIdx]
+                    ? selectedOptions[orderIdx]
+                    : rawAns || "";
+                let correctAns =
+                  q.correct_answer ||
+                  q.answer ||
+                  q.c_ans ||
+                  q.correct ||
+                  q.answers ||
+                  q.ans ||
+                  q.right_answer ||
+                  q.crt_ans ||
+                  "";
+
+                if (!correctAns) {
+                  for (const [k, v] of Object.entries(q)) {
+                    const lk = k.toLowerCase();
+                    if (
+                      (lk.includes("ans") || lk.includes("correct") || lk.includes("right")) &&
+                      lk !== "student_answer" &&
+                      lk !== "user_answer" &&
+                      v &&
+                      String(v).trim() !== ""
+                    ) {
+                      correctAns = String(v).trim();
+                      break;
+                    }
                   }
                 }
-              }
 
-              const lowerC = String(correctAns).trim().toLowerCase();
-              if (lowerC === "a" || lowerC === "1" || lowerC === "option1" || lowerC === "opt1") {
-                correctAns = q.option1 || correctAns;
-              } else if (lowerC === "b" || lowerC === "2" || lowerC === "option2" || lowerC === "opt2") {
-                correctAns = q.option2 || correctAns;
-              } else if (lowerC === "c" || lowerC === "3" || lowerC === "option3" || lowerC === "opt3") {
-                correctAns = q.option3 || correctAns;
-              } else if (lowerC === "d" || lowerC === "4" || lowerC === "option4" || lowerC === "opt4") {
-                correctAns = q.option4 || correctAns;
-              }
+                const lowerC = String(correctAns).trim().toLowerCase();
+                if (lowerC === "a" || lowerC === "1" || lowerC === "option1" || lowerC === "opt1") {
+                  correctAns = q.option1 || correctAns;
+                } else if (lowerC === "b" || lowerC === "2" || lowerC === "option2" || lowerC === "opt2") {
+                  correctAns = q.option2 || correctAns;
+                } else if (lowerC === "c" || lowerC === "3" || lowerC === "option3" || lowerC === "opt3") {
+                  correctAns = q.option3 || correctAns;
+                } else if (lowerC === "d" || lowerC === "4" || lowerC === "option4" || lowerC === "opt4") {
+                  correctAns = q.option4 || correctAns;
+                }
 
-              return {
-                ...q,
-                question_id: q.question_id || q.sno || (questionsNo[orderIdx] && questionsNo[orderIdx].sno) || orderIdx,
-                questions: q.questions || q.question || "",
-                image: q.image || "",
-                option1: q.option1 || q.opt1 || "",
-                option2: q.option2 || q.opt2 || "",
-                option3: q.option3 || q.opt3 || "",
-                option4: q.option4 || q.opt4 || "",
-                student_answer: studentAns,
-                correct_answer: correctAns,
-              };
-            });
-
-            if (orderMap.size > 0) {
-              formatted.sort((a, b) => {
-                const idA = getQId(a);
-                const idB = getQId(b);
-                const orderA = orderMap.has(idA) ? orderMap.get(idA) : 999999;
-                const orderB = orderMap.has(idB) ? orderMap.get(idB) : 999999;
-                return orderA - orderB;
+                return {
+                  ...q,
+                  question_id: q.question_id || q.sno || (questionsNo[orderIdx] && questionsNo[orderIdx].sno) || orderIdx,
+                  questions: q.questions || q.question || "",
+                  image: q.image || "",
+                  option1: q.option1 || q.opt1 || "",
+                  option2: q.option2 || q.opt2 || "",
+                  option3: q.option3 || q.opt3 || "",
+                  option4: q.option4 || q.opt4 || "",
+                  student_answer: studentAns,
+                  correct_answer: correctAns,
+                };
               });
-            }
 
-            // Verify if preview endpoint provided both options and correct answers
-            const hasValidAnswers = formatted.some((item) => item.correct_answer && String(item.correct_answer).trim() !== "" && item.correct_answer !== "N/A");
-            const hasValidOptions = formatted.some((item) => item.option1 && String(item.option1).trim() !== "");
+              if (orderMap.size > 0) {
+                formatted.sort((a, b) => {
+                  const idA = getQId(a);
+                  const idB = getQId(b);
+                  const orderA = orderMap.has(idA) ? orderMap.get(idA) : 999999;
+                  const orderB = orderMap.has(idB) ? orderMap.get(idB) : 999999;
+                  return orderA - orderB;
+                });
+              }
 
-            if (hasValidAnswers && hasValidOptions) {
-              setResponseData(formatted);
-              dataFound = true;
-            } else {
-              console.log("Preview API missing valid answers or options, loading dynamic fallback...");
-              dataFound = false;
+              // Verify if preview endpoint provided both options and correct answers
+              const hasValidAnswers = formatted.some((item) => item.correct_answer && String(item.correct_answer).trim() !== "" && item.correct_answer !== "N/A");
+              const hasValidOptions = formatted.some((item) => item.option1 && String(item.option1).trim() !== "");
+
+              if (hasValidAnswers && hasValidOptions) {
+                setResponseData(formatted);
+                dataFound = true;
+              } else {
+                console.log("Preview API missing valid answers or options, loading dynamic fallback...");
+                dataFound = false;
+              }
             }
-          }   }
+          }
         }
       } catch (apiErr) {
         console.warn("U_viewYearPreview API call failed, trying dynamic fallback:", apiErr);
@@ -613,7 +614,7 @@ function YearTest() {
       console.error("Error fetching data:", err);
     }
   };
-   const handleQuestionChange = async (index) => {
+  const handleQuestionChange = async (index) => {
     if (Array.isArray(questionsNo) && index >= 0 && index < questionsNo.length) {
       const current = questionsNo[index];
       const selectedSno =
@@ -845,7 +846,7 @@ function YearTest() {
     return url && url.match(/\.(jpeg|jpg|gif|png|svg|webp|jfif)$/) != null;
   };
   const BASE_URL =
-    "https://vaagaimaiyam.vebbox.in/vaagaibackend/controllers/api/admin/upload/";
+    "http://localhost/vaagaibackend_local/vaagaibackend_local/controllers/api/admin/upload/";
 
   return (
     <div
@@ -891,7 +892,7 @@ function YearTest() {
                       {/* Debugging Image URL */}
                       {console.log(
                         "Image URL:",
-                        `https://vaagaimaiyam.vebbox.in/vaagaibackend/controllers/api/admin/upload/${questions[0].image
+                        `http://localhost/vaagaibackend_local/vaagaibackend_local/controllers/api/admin/upload/${questions[0].image
                           ?.trim()
                           .replace("../upload/", "")}`
                       )}
@@ -899,7 +900,7 @@ function YearTest() {
                       {/* Display question image */}
                       {questions[0].image ? (
                         <img
-                          src={`https://vaagaimaiyam.vebbox.in/vaagaibackend/controllers/api/admin/upload/${encodeURIComponent(
+                          src={`http://localhost/vaagaibackend_local/vaagaibackend_local/controllers/api/admin/upload/${encodeURIComponent(
                             questions[0].image.trim().replace("../upload/", "")
                           )}`}
                           height="100px"
@@ -949,7 +950,7 @@ function YearTest() {
                               />
                               {isImage(questions[0][`option${option}`]) ? (
                                 <img
-                                  src={`https://vaagaimaiyam.vebbox.in/vaagaibackend/controllers/api/admin/upload/${encodeURIComponent(
+                                  src={`http://localhost/vaagaibackend_local/vaagaibackend_local/controllers/api/admin/upload/${encodeURIComponent(
                                     questions[0][`option${option}`]
                                       .trim()
                                       .replace("../upload/", "")
@@ -1224,20 +1225,20 @@ function YearTest() {
                       </button>
                     </DialogActions>
                   </Dialog>
-                    <ReviewModal
-                      open={Previewopen}
-                      onClose={PreviewhandleClose}
-                      paperName={paperName || "Year Question Paper MCQ"}
-                      responseData={responseData}
-                      responsecount={responsecount}
-                      loadingPreview={loadingPreview}
-                      whatsapp={whatsapp}
-                      onRetry={() => {
-                        registerDatas();
-                        registerDatas1();
-                      }}
-                      BASE_URL={BASE_URL}
-                    />
+                  <ReviewModal
+                    open={Previewopen}
+                    onClose={PreviewhandleClose}
+                    paperName={paperName || "Year Question Paper MCQ"}
+                    responseData={responseData}
+                    responsecount={responsecount}
+                    loadingPreview={loadingPreview}
+                    whatsapp={whatsapp}
+                    onRetry={() => {
+                      registerDatas();
+                      registerDatas1();
+                    }}
+                    BASE_URL={BASE_URL}
+                  />
                 </div>
               </div>
             </Col>

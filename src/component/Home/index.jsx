@@ -127,7 +127,7 @@ const Home = () => {
         </IconButton>
         <DialogContent dividers>
           {/* Display the fetched advertisement */}
-          <img src={`https://vaagaimaiyam.vebbox.in/vaagaibackend/controllers/api/admin/upload/${datas}`} height="500px" />
+          <img src={`http://localhost/vaagaibackend_local/vaagaibackend_local/controllers/api/admin/upload/${datas}`} height="500px" />
         </DialogContent>
       </BootstrapDialog>
     </div>

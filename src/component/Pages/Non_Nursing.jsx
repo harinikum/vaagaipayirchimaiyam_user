@@ -46,7 +46,7 @@ export default function Non_Nursing() {
         }
 
         const obj = response.data.map((data) => ({
-          img: `https://vaagaimaiyam.vebbox.in/vaagaibackend/controllers/api/admin/upload/${data.img}`,
+          img: `http://localhost/vaagaibackend_local/vaagaibackend_local/controllers/api/admin/upload/${data.img}`,
           name: data.category_name,
           path: `/noninstruction/${data.sno}`,
           sno: data.sno

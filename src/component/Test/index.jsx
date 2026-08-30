@@ -234,7 +234,7 @@ function Test() {
                     </p>
                     {d.image ? (
                       <img
-                        src={`https://vaagaimaiyam.vebbox.in/vaagaibackend/controllers/api/admin/upload/${d.image}`}
+                        src={`http://localhost/vaagaibackend_local/vaagaibackend_local/controllers/api/admin/upload/${d.image}`}
                         height="200px"
                         alt="Uploaded Image"
                         onClick={handleClick}
@@ -249,7 +249,7 @@ function Test() {
                       <li style={{ display: "flex", alignItems: "center", paddingBottom: "10px", ...noCopyStyle }}>
                         <input type="radio" name="answer" value="a" onChange={handleOptionChange} style={{ marginRight: "10px" }} />
                         {isImage(d.option1) ? (
-                          <img src={`https://vaagaimaiyam.vebbox.in/vaagaibackend/controllers/api/admin/upload/${d.option1}`} alt="Option 1" style={{ maxHeight: "80px" }} />
+                          <img src={`http://localhost/vaagaibackend_local/vaagaibackend_local/controllers/api/admin/upload/${d.option1}`} alt="Option 1" style={{ maxHeight: "80px" }} />
                         ) : (
                           <span>{d.option1}</span>
                         )}
@@ -257,7 +257,7 @@ function Test() {
                       <li style={{ display: "flex", alignItems: "center", paddingBottom: "10px", ...noCopyStyle }}>
                         <input type="radio" name="answer" value="b" onChange={handleOptionChange} style={{ marginRight: "10px" }} />
                         {isImage(d.option2) ? (
-                          <img src={`https://vaagaimaiyam.vebbox.in/vaagaibackend/controllers/api/admin/upload/${d.option2}`} alt="Option 2" style={{ maxHeight: "80px" }} />
+                          <img src={`http://localhost/vaagaibackend_local/vaagaibackend_local/controllers/api/admin/upload/${d.option2}`} alt="Option 2" style={{ maxHeight: "80px" }} />
                         ) : (
                           <span>{d.option2}</span>
                         )}
@@ -265,7 +265,7 @@ function Test() {
                       <li style={{ display: "flex", alignItems: "center", paddingBottom: "10px", ...noCopyStyle }}>
                         <input type="radio" name="answer" value="c" onChange={handleOptionChange} style={{ marginRight: "10px" }} />
                         {isImage(d.option3) ? (
-                          <img src={`https://vaagaimaiyam.vebbox.in/vaagaibackend/controllers/api/admin/upload/${d.option3}`} alt="Option 3" style={{ maxHeight: "80px" }} />
+                          <img src={`http://localhost/vaagaibackend_local/vaagaibackend_local/controllers/api/admin/upload/${d.option3}`} alt="Option 3" style={{ maxHeight: "80px" }} />
                         ) : (
                           <span>{d.option3}</span>
                         )}
@@ -273,7 +273,7 @@ function Test() {
                       <li style={{ display: "flex", alignItems: "center", paddingBottom: "10px", ...noCopyStyle }}>
                         <input type="radio" name="answer" value="d" onChange={handleOptionChange} style={{ marginRight: "10px" }} />
                         {isImage(d.option4) ? (
-                          <img src={`https://vaagaimaiyam.vebbox.in/vaagaibackend/controllers/api/admin/upload/${d.option4}`} alt="Option 4" style={{ maxHeight: "80px" }} />
+                          <img src={`http://localhost/vaagaibackend_local/vaagaibackend_local/controllers/api/admin/upload/${d.option4}`} alt="Option 4" style={{ maxHeight: "80px" }} />
                         ) : (
                           <span>{d.option4}</span>
                         )}
@@ -289,7 +289,7 @@ function Test() {
                       <div style={noCopyStyle}>
                         <Typography style={{ fontWeight: 600 }}>Correct Answer :</Typography>
                         {isImage(d.answer) ? (
-                          <img src={`https://vaagaimaiyam.vebbox.in/vaagaibackend/controllers/api/admin/upload/${d.answer}`} alt="Answer Image" style={{ maxWidth: "80px", paddingTop: "10px" }} />
+                          <img src={`http://localhost/vaagaibackend_local/vaagaibackend_local/controllers/api/admin/upload/${d.answer}`} alt="Answer Image" style={{ maxWidth: "80px", paddingTop: "10px" }} />
                         ) : (
                           <Typography style={{ fontSize: "15px", paddingTop: "10px" }}>{d.answer}</Typography>
                         )}

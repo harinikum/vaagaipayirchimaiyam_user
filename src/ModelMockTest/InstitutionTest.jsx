@@ -319,7 +319,7 @@ function InstitutionTest() {
         if (typeof parsed === "string") {
           try {
             parsed = JSON.parse(parsed);
-          } catch (e) {}
+          } catch (e) { }
         }
         if (parsed && Array.isArray(parsed.data)) {
           parsed = parsed.data;
@@ -879,7 +879,7 @@ function InstitutionTest() {
           } else {
             // It's just a path (like ../upload/img.jpg), so build full URL
             const cleanedImagePath = q.image.replace("../upload/", "");
-            const imageUrl = `https://vaagaimaiyam.vebbox.in/vaagaibackend/controllers/api/admin/upload/${cleanedImagePath}`;
+            const imageUrl = `http://localhost/vaagaibackend_local/vaagaibackend_local/controllers/api/admin/upload/${cleanedImagePath}`;
             try {
               const base64Img = await getBase64ImageFromUrl(imageUrl);
               htmlContent += `<img src="${base64Img}" width="300" height="200" style="margin: 10px 0;" />`;
@@ -940,7 +940,7 @@ function InstitutionTest() {
   };
 
   const BASE_URL =
-    "https://vaagaimaiyam.vebbox.in/vaagaibackend/controllers/api/admin/upload/";
+    "http://localhost/vaagaibackend_local/vaagaibackend_local/controllers/api/admin/upload/";
 
   const isImage = (url) => {
     return url && url.match(/\.(jpeg|jpg|gif|png|svg|webp|jfif)$/) != null;
@@ -991,7 +991,7 @@ function InstitutionTest() {
                     {/* Debugging Image URL */}
                     {console.log(
                       "Image URL:",
-                      `https://vaagaimaiyam.vebbox.in/vaagaibackend/controllers/api/admin/upload/${questions[0].image
+                      `http://localhost/vaagaibackend_local/vaagaibackend_local/controllers/api/admin/upload/${questions[0].image
                         ?.trim()
                         .replace("../upload/", "")}`
                     )}
@@ -999,7 +999,7 @@ function InstitutionTest() {
                     {/* Display question image */}
                     {questions[0].image ? (
                       <img
-                        src={`https://vaagaimaiyam.vebbox.in/vaagaibackend/controllers/api/admin/upload/${encodeURIComponent(
+                        src={`http://localhost/vaagaibackend_local/vaagaibackend_local/controllers/api/admin/upload/${encodeURIComponent(
                           questions[0].image.trim().replace("../upload/", "")
                         )}`}
                         height="100px"
@@ -1043,7 +1043,7 @@ function InstitutionTest() {
                             />
                             {isImage(questions[0][`option${option}`]) ? (
                               <img
-                                src={`https://vaagaimaiyam.vebbox.in/vaagaibackend/controllers/api/admin/upload/${encodeURIComponent(
+                                src={`http://localhost/vaagaibackend_local/vaagaibackend_local/controllers/api/admin/upload/${encodeURIComponent(
                                   questions[0][`option${option}`]
                                     .trim()
                                     .replace("../upload/", "")

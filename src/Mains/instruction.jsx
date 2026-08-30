@@ -67,7 +67,7 @@ export default function MainsInstruction() {
         if (typeof list === "string") {
           try {
             list = JSON.parse(list);
-          } catch (e) {}
+          } catch (e) { }
         }
         if (list && Array.isArray(list.data)) {
           list = list.data;
@@ -78,7 +78,7 @@ export default function MainsInstruction() {
         const yearobj = list
           ?.map((item) => ({
             ...item,
-            img: `https://vaagaimaiyam.vebbox.in/vaagaibackend/controllers/api/admin/upload/${item.img}`,
+            img: `http://localhost/vaagaibackend_local/vaagaibackend_local/controllers/api/admin/upload/${item.img}`,
           }))
           .filter((item) => String(item.sno) === String(sno));
         setData(yearobj.length > 0 ? yearobj : (list.length > 0 ? [list[0]] : [{ mains_name: "Mains Test", sno: sno }]));
@@ -104,7 +104,7 @@ export default function MainsInstruction() {
           if (typeof list === "string") {
             try {
               list = JSON.parse(list);
-            } catch (e) {}
+            } catch (e) { }
           }
           if (list && Array.isArray(list.data)) {
             list = list.data;

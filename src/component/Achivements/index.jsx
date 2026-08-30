@@ -73,7 +73,7 @@ const Index = () => {
               <div className="d-flex flex-column p-3  service-div shadow h-100" style={{ backgroundColor: "white", borderRadius: "8px" }}>
                 <div style={{ display: "flex", justifyContent: "center" }}>
                   <img
-                    src={`https://vaagaimaiyam.vebbox.in/vaagaibackend/controllers/api/admin/upload/${achievement.img}`}
+                    src={`http://localhost/vaagaibackend_local/vaagaibackend_local/controllers/api/admin/upload/${achievement.img}`}
                     alt="Awards"
                     height="100px"
                     style={{ objectFit: "cover" }}

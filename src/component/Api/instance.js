@@ -5,7 +5,7 @@ const createAxiosInstance = () => {
   const tokenData = localStorage.getItem("token");
 
   const instance = axios.create({
-    baseURL: "https://vaagaimaiyam.vebbox.in/vaagaibackend/controllers/api/User/",
+    baseURL: "http://localhost/vaagaibackend_local/vaagaibackend_local/controllers/api/User/",
     // baseURL: "http://localhost/vaagaibackend_local/vaagaibackend_local/controllers/api/User/",
     headers: {
       Authorization: `Bearer ${tokenData}`,

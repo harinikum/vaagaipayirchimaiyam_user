@@ -846,7 +846,7 @@ function YearTest() {
     return url && url.match(/\.(jpeg|jpg|gif|png|svg|webp|jfif)$/) != null;
   };
   const BASE_URL =
-    "http://localhost/vaagaibackend_local/vaagaibackend_local/controllers/api/admin/upload/";
+    "https://vaagaimaiyam.vebbox.in/vaagaibackend/controllers/api/admin/upload/";
 
   return (
     <div
@@ -892,7 +892,7 @@ function YearTest() {
                       {/* Debugging Image URL */}
                       {console.log(
                         "Image URL:",
-                        `http://localhost/vaagaibackend_local/vaagaibackend_local/controllers/api/admin/upload/${questions[0].image
+                        `https://vaagaimaiyam.vebbox.in/vaagaibackend/controllers/api/admin/upload/${questions[0].image
                           ?.trim()
                           .replace("../upload/", "")}`
                       )}
@@ -900,7 +900,7 @@ function YearTest() {
                       {/* Display question image */}
                       {questions[0].image ? (
                         <img
-                          src={`http://localhost/vaagaibackend_local/vaagaibackend_local/controllers/api/admin/upload/${encodeURIComponent(
+                          src={`https://vaagaimaiyam.vebbox.in/vaagaibackend/controllers/api/admin/upload/${encodeURIComponent(
                             questions[0].image.trim().replace("../upload/", "")
                           )}`}
                           height="100px"
@@ -950,7 +950,7 @@ function YearTest() {
                               />
                               {isImage(questions[0][`option${option}`]) ? (
                                 <img
-                                  src={`http://localhost/vaagaibackend_local/vaagaibackend_local/controllers/api/admin/upload/${encodeURIComponent(
+                                  src={`https://vaagaimaiyam.vebbox.in/vaagaibackend/controllers/api/admin/upload/${encodeURIComponent(
                                     questions[0][`option${option}`]
                                       .trim()
                                       .replace("../upload/", "")

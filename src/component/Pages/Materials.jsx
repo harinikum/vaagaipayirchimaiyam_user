@@ -23,9 +23,23 @@ export default function Materials() {
             const response = await axiosInstance.post('get/U_ViewMaterials.php');
             if (response.status === 200) {
                 if (Array.isArray(response.data)) {
-                    // Filter materials by category and institution_id columns
+                    // Filter materials by category and institution_id columns for the selected subject
+                    const isCategoryMatch = (itemCat, selSubj) => {
+                        if (!itemCat || !selSubj) return true;
+                        const cat = itemCat.toUpperCase();
+                        const sub = selSubj.toUpperCase();
+                        if (cat === sub) return true;
+                        if ((sub === "KT" || sub === "MAINS") && (cat === "KT" || cat === "MAINS")) return true;
+                        if ((sub === "TNTET" || sub === "PRELIMS") && (cat === "TNTET" || cat === "PRELIMS")) return true;
+                        if ((sub === "PG" || sub === "SUBJECT") && (cat === "PG" || cat === "SUBJECT")) return true;
+                        if ((sub === "UG" || sub === "NON_NURSING") && (cat === "UG" || cat === "NON_NURSING")) return true;
+                        if ((sub === "TNSET" || sub === "MODEL") && (cat === "TNSET" || cat === "MODEL")) return true;
+                        if ((sub === "FREE" || sub === "YEAR") && (cat === "FREE" || cat === "YEAR")) return true;
+                        return false;
+                    };
+
                     const filtered = response.data.filter(item =>
-                        item.category === selectedSubject &&
+                        isCategoryMatch(item.category, selectedSubject) &&
                         String(item.institution_id) === String(selectedSno)
                     );
                     setMaterials(filtered);
@@ -40,8 +54,15 @@ export default function Materials() {
 
     const { Endpoint } = React.useContext(UserContext);
     const handleDownload = (pdfPath) => {
-        const downloadUrl = `${Endpoint.replace("controllers/api/User/", "")}${pdfPath}`;
-        window.open(downloadUrl, '_blank');
+        const baseUrl = Endpoint.replace("controllers/api/User/", "").replace("vaagaimaiyam.vebbox.in", "adminvaagaimaiyam.vebbox.in");
+        const downloadUrl = `${baseUrl}${encodeURI(pdfPath)}`;
+        const link = document.createElement('a');
+        link.href = downloadUrl;
+        link.target = '_blank';
+        link.download = pdfPath.split('/').pop();
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
     };
 
     return (

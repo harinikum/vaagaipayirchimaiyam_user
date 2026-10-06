@@ -30,7 +30,7 @@ export default function Subject() {
           Navigate("/signin");
         } else {
           const subobj = response.data.map((datas) => ({
-            img: `http://localhost/vaagaibackend_local/vaagaibackend_local/controllers/api/admin/upload/${datas.img}`,
+            img: `https://vaagaimaiyam.vebbox.in/vaagaibackend/controllers/api/admin/upload/${datas.img}`,
             name: datas.subject_name,
             path: `/subinstruction/${datas.sno}`,
             sno: datas.sno,

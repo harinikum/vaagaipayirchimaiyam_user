@@ -66,7 +66,7 @@ export default function NonInstruction() {
         }
         const filteredData = response.data?.map((item) => ({
           ...item,
-          img: `http://localhost/vaagaibackend_local/vaagaibackend_local/controllers/api/admin/upload/${item.img}`
+          img: `https://vaagaimaiyam.vebbox.in/vaagaibackend/controllers/api/admin/upload/${item.img}`
         })).filter(item => item.sno == sno);
         setData(filteredData);
       }

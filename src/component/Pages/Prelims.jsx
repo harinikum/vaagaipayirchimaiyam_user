@@ -27,7 +27,7 @@ export default function Prelims() {
       );
 
       const subobj = response.data.map((datas) => ({
-        img: `http://localhost/vaagaibackend_local/vaagaibackend_local/controllers/api/admin/upload/${datas.img}`,
+        img: `https://vaagaimaiyam.vebbox.in/vaagaibackend/controllers/api/admin/upload/${datas.img}`,
         name: datas.prelims_name,
         path: `/prelimsinstruction/${datas.sno}`,
         sno: datas.sno

@@ -19,8 +19,8 @@ import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
 import Web from "../../asserts/_x36__stroke.png";
 
 const DEFAULT_BASE_URL =
-  "http://localhost/vaagaibackend_local/vaagaibackend_local/controllers/api/admin/upload/";
-// "http://localhost/vaagaibackend_local/vaagaibackend_local/controllers/api/admin/upload"
+  "https://vaagaimaiyam.vebbox.in/vaagaibackend/controllers/api/admin/upload/";
+// "https://vaagaimaiyam.vebbox.in/vaagaibackend/controllers/api/admin/upload"
 
 export const isImageCheck = (url) => {
   if (!url) return false;

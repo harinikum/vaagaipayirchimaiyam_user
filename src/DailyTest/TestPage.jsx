@@ -390,7 +390,7 @@ function TestPage() {
   const isImage = (url) => {
     return url && url.match(/\.(jpeg|jpg|gif|png|svg|webp|jfif)$/) != null;
   };
-  const BASE_URL = "http://localhost/vaagaibackend_local/vaagaibackend_local/controllers/api/admin/upload/";
+  const BASE_URL = "https://vaagaimaiyam.vebbox.in/vaagaibackend/controllers/api/admin/upload/";
 
   return (
     <div style={{ backgroundColor: "#F2F1EB", padding: "20px", height: "100vh" }}>
@@ -417,7 +417,7 @@ function TestPage() {
                 <div style={noCopyStyle}>
                   <p style={{ fontWeight: 600, letterSpacing: "1px" }} >{`${selectedQuestionIndex + 1}.${questions[0].questions}`}</p>
                   {
-                    questions[0].image ? <img src={`http://localhost/vaagaibackend_local/vaagaibackend_local/controllers/api/admin/upload/${questions[0].image}`} height="200px" alt="Uploaded Image"
+                    questions[0].image ? <img src={`https://vaagaimaiyam.vebbox.in/vaagaibackend/controllers/api/admin/upload/${questions[0].image}`} height="200px" alt="Uploaded Image"
                       onClick={handleClick}
                       style={colorSwap ? Active : DisActive} /> : null
                   }
@@ -435,7 +435,7 @@ function TestPage() {
                           />
                           {isImage(questions[0][`option${option}`]) ? (
                             <img
-                              src={`http://localhost/vaagaibackend_local/vaagaibackend_local/controllers/api/admin/upload/${questions[0][`option${option}`]}`}
+                              src={`https://vaagaimaiyam.vebbox.in/vaagaibackend/controllers/api/admin/upload/${questions[0][`option${option}`]}`}
                               alt={`Option ${option}`}
                               style={{ maxHeight: "80px", marginLeft: "10px" }}
                             />
@@ -456,7 +456,7 @@ function TestPage() {
                       <div style={{ backgroundColor: "white", margin: "20px", padding: "30px" }}>
                         <Typography style={{ fontWeight: 600 }}>Correct Answer :</Typography>
                         {isImage(questions[0].answer) ? (
-                          <img src={`http://localhost/vaagaibackend_local/vaagaibackend_local/controllers/api/admin/upload/${questions[0].answer}`} alt="Answer Image" style={{ maxWidth: "80px", paddingTop: "10px" }} />
+                          <img src={`https://vaagaimaiyam.vebbox.in/vaagaibackend/controllers/api/admin/upload/${questions[0].answer}`} alt="Answer Image" style={{ maxWidth: "80px", paddingTop: "10px" }} />
                         ) : (
                           <Typography style={{ fontSize: "15px", paddingTop: "10px" }}>{questions[0].answer}</Typography>
                         )}

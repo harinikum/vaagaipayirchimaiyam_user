@@ -89,7 +89,7 @@ export default function Instruction() {
         }
         const yearobj = response.data?.map((item) => ({
           ...item,
-          img: `http://localhost/vaagaibackend_local/vaagaibackend_local/controllers/api/admin/upload/${item.img}`
+          img: `https://vaagaimaiyam.vebbox.in/vaagaibackend/controllers/api/admin/upload/${item.img}`
 
         })).filter(item => item.sno == sno);
         console.log(yearobj);
@@ -316,7 +316,7 @@ export default function Instruction() {
         </IconButton>
         <DialogContent dividers>
           {datas && datas && (
-            <img src={`http://localhost/vaagaibackend_local/vaagaibackend_local/controllers/api/admin/upload/${datas}`} height="500px" />
+            <img src={`https://vaagaimaiyam.vebbox.in/vaagaibackend/controllers/api/admin/upload/${datas}`} height="500px" />
           )}
         </DialogContent>
       </BootstrapDialog>
